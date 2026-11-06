@@ -1,0 +1,792 @@
+[
+  {
+    "id": "1",
+    "name": "Waffle sencillo",
+    "category": "Alimentos y bebidas",
+    "subCategory": "WAFFLES Y POSTRES",
+    "sku": "ALM-002",
+    "price": 9,
+    "cost": 0.5,
+    "stock": 20
+  },
+  {
+    "id": "2",
+    "name": "Waffle especial",
+    "category": "Alimentos y bebidas",
+    "subCategory": "WAFFLES Y POSTRES",
+    "sku": "ALM-003",
+    "price": 12,
+    "cost": 2.8,
+    "stock": 20
+  },
+  {
+    "id": "3",
+    "name": "Ensalada de fruta especial",
+    "category": "Alimentos y bebidas",
+    "subCategory": "WAFFLES Y POSTRES",
+    "sku": "ALM-004",
+    "price": 9,
+    "cost": 3.29,
+    "stock": 20
+  },
+  {
+    "id": "4",
+    "name": "Frappuccino",
+    "category": "Alimentos y bebidas",
+    "subCategory": "FRAPPES",
+    "sku": "ALM-005",
+    "price": 9,
+    "cost": 3.18,
+    "stock": 20
+  },
+  {
+    "id": "5",
+    "name": "Moca",
+    "category": "Alimentos y bebidas",
+    "subCategory": "FRAPPES",
+    "sku": "ALM-006",
+    "price": 10,
+    "cost": 2.95,
+    "stock": 20
+  },
+  {
+    "id": "6",
+    "name": "Nutella",
+    "category": "Alimentos y bebidas",
+    "subCategory": "FRAPPES",
+    "sku": "ALM-007",
+    "price": 11,
+    "cost": 6,
+    "stock": 20
+  },
+  {
+    "id": "7",
+    "name": "Fresa",
+    "category": "Alimentos y bebidas",
+    "subCategory": "FRAPPES",
+    "sku": "ALM-008",
+    "price": 10,
+    "cost": 3.87,
+    "stock": 20
+  },
+  {
+    "id": "8",
+    "name": "Oreo",
+    "category": "Alimentos y bebidas",
+    "subCategory": "FRAPPES",
+    "sku": "ALM-009",
+    "price": 10,
+    "cost": 4.01,
+    "stock": 20
+  },
+  {
+    "id": "9",
+    "name": "Jugo de fresa con leche",
+    "category": "Alimentos y bebidas",
+    "subCategory": "JUGOS NATURALES",
+    "sku": "ALM-010",
+    "price": 8,
+    "cost": 3.49,
+    "stock": 20
+  },
+  {
+    "id": "10",
+    "name": "Jugo de mango con leche",
+    "category": "Alimentos y bebidas",
+    "subCategory": "JUGOS NATURALES",
+    "sku": "ALM-011",
+    "price": 7,
+    "cost": 3.25,
+    "stock": 20
+  },
+  {
+    "id": "11",
+    "name": "Jugo de piña",
+    "category": "Alimentos y bebidas",
+    "subCategory": "JUGOS NATURALES",
+    "sku": "ALM-012",
+    "price": 7,
+    "cost": 2.03,
+    "stock": 20
+  },
+  {
+    "id": "12",
+    "name": "Jugo de plátano",
+    "category": "Alimentos y bebidas",
+    "subCategory": "JUGOS NATURALES",
+    "sku": "ALM-013",
+    "price": 7,
+    "cost": 2.14,
+    "stock": 20
+  },
+  {
+    "id": "13",
+    "name": "Jugo de papaya",
+    "category": "Alimentos y bebidas",
+    "subCategory": "JUGOS NATURALES",
+    "sku": "ALM-014",
+    "price": 7,
+    "cost": 1.58,
+    "stock": 20
+  },
+  {
+    "id": "14",
+    "name": "Café",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS CALIENTES",
+    "sku": "ALM-015",
+    "price": 4,
+    "cost": 0.5,
+    "stock": 20
+  },
+  {
+    "id": "15",
+    "name": "Chocolatada",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS CALIENTES",
+    "sku": "ALM-016",
+    "price": 8,
+    "cost": 4.46,
+    "stock": 20
+  },
+  {
+    "id": "16",
+    "name": "Filtrante de manzanilla",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS CALIENTES",
+    "sku": "ALM-017",
+    "price": 2.5,
+    "cost": 0.3,
+    "stock": 20
+  },
+  {
+    "id": "17",
+    "name": "Filtrante de anís",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS CALIENTES",
+    "sku": "ALM-018",
+    "price": 2.5,
+    "cost": 0.3,
+    "stock": 20
+  },
+  {
+    "id": "18",
+    "name": "Filtrante de hierba luisa",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS CALIENTES",
+    "sku": "ALM-019",
+    "price": 2.5,
+    "cost": 0.3,
+    "stock": 20
+  },
+  {
+    "id": "19",
+    "name": "Limonada frozen (1 L)",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS DE 1 LITRO",
+    "sku": "ALM-020",
+    "price": 9,
+    "cost": 2.4,
+    "stock": 20
+  },
+  {
+    "id": "20",
+    "name": "Chicha morada (1 L)",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS DE 1 LITRO",
+    "sku": "ALM-021",
+    "price": 9,
+    "cost": 1.63,
+    "stock": 20
+  },
+  {
+    "id": "21",
+    "name": "Maracuyá (1 L)",
+    "category": "Alimentos y bebidas",
+    "subCategory": "BEBIDAS DE 1 LITRO",
+    "sku": "ALM-022",
+    "price": 9,
+    "cost": 2.8,
+    "stock": 20
+  },
+  {
+    "id": "22",
+    "name": "Barquimiel",
+    "category": "Alimentos y bebidas",
+    "subCategory": "HELADOS Y BARQUIMIEL",
+    "sku": "ALM-023",
+    "price": 4.6,
+    "cost": 1.2,
+    "stock": 20
+  },
+  {
+    "id": "23",
+    "name": "Helado en vaso (normal)",
+    "category": "Alimentos y bebidas",
+    "subCategory": "HELADOS Y BARQUIMIEL",
+    "sku": "ALM-024",
+    "price": 4.8,
+    "cost": 0.9,
+    "stock": 20
+  },
+  {
+    "id": "24",
+    "name": "Helado en vaso (grande)",
+    "category": "Alimentos y bebidas",
+    "subCategory": "HELADOS Y BARQUIMIEL",
+    "sku": "ALM-025",
+    "price": 5.8,
+    "cost": 1.5,
+    "stock": 20
+  },
+  {
+    "id": "25",
+    "name": "Papas fritas saladas",
+    "category": "Alimentos y bebidas",
+    "subCategory": "SNACKS",
+    "sku": "ALM-026",
+    "price": 6,
+    "cost": 2.6,
+    "stock": 20
+  },
+  {
+    "id": "26",
+    "name": "Camote frito",
+    "category": "Alimentos y bebidas",
+    "subCategory": "SNACKS",
+    "sku": "ALM-027",
+    "price": 6,
+    "cost": 2.6,
+    "stock": 20
+  },
+  {
+    "id": "27",
+    "name": "Plátano frito",
+    "category": "Alimentos y bebidas",
+    "subCategory": "SNACKS",
+    "sku": "ALM-028",
+    "price": 6,
+    "cost": 2.6,
+    "stock": 20
+  },
+  {
+    "id": "28",
+    "name": "Chachita (palomitas)",
+    "category": "Alimentos y bebidas",
+    "subCategory": "SNACKS",
+    "sku": "ALM-029",
+    "price": 6,
+    "cost": 2.6,
+    "stock": 20
+  },
+  {
+    "id": "29",
+    "name": "Doritos snacks",
+    "category": "Alimentos y bebidas",
+    "subCategory": "SNACKS",
+    "sku": "ALM-030",
+    "price": 6,
+    "cost": 2.6,
+    "stock": 20
+  },
+  {
+    "id": "30",
+    "name": "Mikes",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-031",
+    "price": 7,
+    "cost": 3.81,
+    "stock": 20
+  },
+  {
+    "id": "31",
+    "name": "Pilsen",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-032",
+    "price": 10,
+    "cost": 3.39,
+    "stock": 20
+  },
+  {
+    "id": "32",
+    "name": "Agua",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-033",
+    "price": 2.9,
+    "cost": 0.62,
+    "stock": 20
+  },
+  {
+    "id": "33",
+    "name": "Coca personal",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-034",
+    "price": 6.4,
+    "cost": 2.4,
+    "stock": 20
+  },
+  {
+    "id": "34",
+    "name": "Coca grande",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-035",
+    "price": 14,
+    "cost": 7.91,
+    "stock": 20
+  },
+  {
+    "id": "35",
+    "name": "Kr kola",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-036",
+    "price": 2.9,
+    "cost": 0.62,
+    "stock": 20
+  },
+  {
+    "id": "36",
+    "name": "Sprite",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-037",
+    "price": 11,
+    "cost": 5.37,
+    "stock": 20
+  },
+  {
+    "id": "37",
+    "name": "Coca vidrio 1 L",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-038",
+    "price": 9,
+    "cost": 3.04,
+    "stock": 20
+  },
+  {
+    "id": "38",
+    "name": "Ron",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-039",
+    "price": 24.9,
+    "cost": 14.41,
+    "stock": 20
+  },
+  {
+    "id": "39",
+    "name": "Pisco",
+    "category": "Alimentos y bebidas",
+    "subCategory": "GASEOSAS, CERVEZAS Y LICORES (los compro y los vendo)",
+    "sku": "ALM-040",
+    "price": 30,
+    "cost": 19.07,
+    "stock": 20
+  },
+  {
+    "id": "40",
+    "name": "Dobble",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-041",
+    "price": 10,
+    "cost": 5.28,
+    "stock": 5
+  },
+  {
+    "id": "41",
+    "name": "Taco Gato Cabra Queso Pizza",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-042",
+    "price": 10,
+    "cost": 5.28,
+    "stock": 5
+  },
+  {
+    "id": "42",
+    "name": "Basta original",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-043",
+    "price": 30.9,
+    "cost": 20.78,
+    "stock": 5
+  },
+  {
+    "id": "43",
+    "name": "Basta económico",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-044",
+    "price": 38.1,
+    "cost": 25.78,
+    "stock": 5
+  },
+  {
+    "id": "44",
+    "name": "Cubo de expresiones (Cubex)",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-045",
+    "price": 21.6,
+    "cost": 14.28,
+    "stock": 5
+  },
+  {
+    "id": "45",
+    "name": "Fantasma Blitz",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-046",
+    "price": 8.9,
+    "cost": 5.28,
+    "stock": 5
+  },
+  {
+    "id": "46",
+    "name": "Party games (compra S/ 5)",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-047",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "47",
+    "name": "Party games (compra S/ 8.50)",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-048",
+    "price": 14.5,
+    "cost": 9.28,
+    "stock": 5
+  },
+  {
+    "id": "48",
+    "name": "Cranium",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-049",
+    "price": 96.3,
+    "cost": 66.78,
+    "stock": 5
+  },
+  {
+    "id": "49",
+    "name": "Monopoly imperio",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-050",
+    "price": 36.1,
+    "cost": 24.58,
+    "stock": 5
+  },
+  {
+    "id": "50",
+    "name": "Monopoly brainrots",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-051",
+    "price": 21,
+    "cost": 13.78,
+    "stock": 5
+  },
+  {
+    "id": "51",
+    "name": "Monopoly turístico Perú",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-052",
+    "price": 15.4,
+    "cost": 9.88,
+    "stock": 5
+  },
+  {
+    "id": "52",
+    "name": "Monopoly 80 años",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-053",
+    "price": 40.8,
+    "cost": 27.78,
+    "stock": 5
+  },
+  {
+    "id": "53",
+    "name": "Scrabble",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-054",
+    "price": 27.2,
+    "cost": 18.28,
+    "stock": 5
+  },
+  {
+    "id": "54",
+    "name": "Risk",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-055",
+    "price": 34.7,
+    "cost": 23.58,
+    "stock": 5
+  },
+  {
+    "id": "55",
+    "name": "Clue",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-056",
+    "price": 30.9,
+    "cost": 20.78,
+    "stock": 5
+  },
+  {
+    "id": "56",
+    "name": "Pincha globo",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-057",
+    "price": 27.9,
+    "cost": 18.78,
+    "stock": 5
+  },
+  {
+    "id": "57",
+    "name": "UNO",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-058",
+    "price": 16.6,
+    "cost": 10.78,
+    "stock": 5
+  },
+  {
+    "id": "58",
+    "name": "Uno flip",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-059",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "59",
+    "name": "Uno no mercy",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-060",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "60",
+    "name": "Brick game",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-061",
+    "price": 22.6,
+    "cost": 14.98,
+    "stock": 5
+  },
+  {
+    "id": "61",
+    "name": "Virus normal",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-062",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "62",
+    "name": "Virus pequeño",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-063",
+    "price": 11.7,
+    "cost": 7.28,
+    "stock": 5
+  },
+  {
+    "id": "63",
+    "name": "Virus grande",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-064",
+    "price": 21,
+    "cost": 13.78,
+    "stock": 5
+  },
+  {
+    "id": "64",
+    "name": "Uno Scrabble",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-065",
+    "price": 12.4,
+    "cost": 7.78,
+    "stock": 5
+  },
+  {
+    "id": "65",
+    "name": "Uno Pictionary",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-066",
+    "price": 12.3,
+    "cost": 7.68,
+    "stock": 5
+  },
+  {
+    "id": "66",
+    "name": "Pictureka",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-067",
+    "price": 26.2,
+    "cost": 17.48,
+    "stock": 5
+  },
+  {
+    "id": "67",
+    "name": "Ponte mosca",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-068",
+    "price": 25.2,
+    "cost": 16.78,
+    "stock": 5
+  },
+  {
+    "id": "68",
+    "name": "JU-pig",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-069",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "69",
+    "name": "Pin activates",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-070",
+    "price": 30.9,
+    "cost": 20.78,
+    "stock": 5
+  },
+  {
+    "id": "70",
+    "name": "Jenga shot",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-071",
+    "price": 18.1,
+    "cost": 11.78,
+    "stock": 5
+  },
+  {
+    "id": "71",
+    "name": "Jenga valor de la verdad",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-072",
+    "price": 18.1,
+    "cost": 11.78,
+    "stock": 5
+  },
+  {
+    "id": "72",
+    "name": "Jenga familiar",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-073",
+    "price": 18.1,
+    "cost": 11.78,
+    "stock": 5
+  },
+  {
+    "id": "73",
+    "name": "JU-ALIVE5",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-074",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "74",
+    "name": "Ajedrez 5 en 1",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-075",
+    "price": 18.1,
+    "cost": 11.78,
+    "stock": 5
+  },
+  {
+    "id": "75",
+    "name": "Ni sí ni no",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-076",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "76",
+    "name": "JU-Fiesta",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-077",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "77",
+    "name": "JU-joda",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-078",
+    "price": 7.9,
+    "cost": 4.58,
+    "stock": 5
+  },
+  {
+    "id": "78",
+    "name": "JU-Copa",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-079",
+    "price": 9.6,
+    "cost": 5.78,
+    "stock": 5
+  },
+  {
+    "id": "79",
+    "name": "La hora de la verdad (cartas amigos)",
+    "category": "Juegos de mesa",
+    "subCategory": "JUEGOS DE MESA",
+    "sku": "JUG-080",
+    "price": 8.9,
+    "cost": 5.28,
+    "stock": 5
+  }
+]
