@@ -27,6 +27,7 @@ export function LoginView({
   const [regPassword, setRegPassword] = useState('')
   const [regRole, setRegRole] = useState('Cajero')
   const [showPassword, setShowPassword] = useState(false)
+  const [logoError, setLogoError] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,10 +39,10 @@ export function LoginView({
   }
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 overflow-hidden">
-      {/* Fondo cinematográfico (imagen, sin video para evitar errores de carga) */}
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 overflow-hidden bg-gradient-to-br from-[#1c1917] via-[#292524] to-[#0c0a09]">
+      {/* Fondo cinematográfico con fallback sólido para bloqueadores */}
       <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none scale-105"
+        className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none scale-105 opacity-80"
         style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600&q=80)' }}
       />
 
@@ -59,12 +60,19 @@ export function LoginView({
       <div className="relative z-10 w-full max-w-sm bg-white/95 backdrop-blur-xl rounded-3xl p-7 flex flex-col gap-5 shadow-2xl animate-fade-in border border-white/60">
         {/* Encabezado con Logo */}
         <div className="flex flex-col items-center text-center gap-2.5">
-          <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-white shadow-lg bg-black/40">
-            <img
-              src="/logo.jpg"
-              alt="Dados & Bocados"
-              className="w-full h-full object-cover"
-            />
+          <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white shadow-lg bg-black/40 flex items-center justify-center">
+            {!logoError ? (
+              <img
+                src="/logo.jpg"
+                alt="Dados & Bocados"
+                className="w-full h-full object-cover"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <div className="w-full h-full bg-[#1a1b21] flex flex-col items-center justify-center text-amber-400 font-bold text-xs p-1">
+                <span>🎲 D&B</span>
+              </div>
+            )}
           </div>
           <div>
             <h1 className="text-3xl font-bold font-cormorant text-[#1a1b21] m-0">

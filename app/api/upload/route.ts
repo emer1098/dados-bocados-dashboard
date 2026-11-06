@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
+import { getDatabase } from '@/lib/mongodb'
 
 export async function POST(request: Request) {
   try {
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
       )
     }
 
-    // Validar tipo de imagen
+    // Validar tipo de imagen (Rechazar SVG por seguridad)
     const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
     if (!validTypes.includes(file.type)) {
       return NextResponse.json(
@@ -32,17 +33,46 @@ export async function POST(request: Request) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    // Crear carpeta public/uploads si no existe
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-    await mkdir(uploadDir, { recursive: true })
-
     // Sanitizar nombre de archivo con timestamp
     const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
     const uniqueFileName = `${Date.now()}_${cleanName}`
-    const filePath = path.join(uploadDir, uniqueFileName)
 
-    await writeFile(filePath, buffer)
-    const fileUrl = `/uploads/${uniqueFileName}`
+    // 1. Guardar en MongoDB Atlas (Garantiza persistencia permanente en Render gratuito)
+    try {
+      const db = await getDatabase()
+      await db.collection('uploads').updateOne(
+        { filename: uniqueFileName },
+        {
+          $set: {
+            filename: uniqueFileName,
+            contentType: file.type || 'image/webp',
+            data: buffer,
+            size: file.size,
+            updatedAt: new Date(),
+          },
+          $setOnInsert: {
+            createdAt: new Date(),
+          },
+        },
+        { upsert: true }
+      )
+    } catch (dbError: any) {
+      console.error('Error al guardar imagen en MongoDB Atlas:', dbError)
+    }
+
+    // 2. Guardar en disco local si es posible (desarrollo local)
+    try {
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads')
+      await mkdir(uploadDir, { recursive: true })
+      const filePath = path.join(uploadDir, uniqueFileName)
+      await writeFile(filePath, buffer)
+    } catch (fsError: any) {
+      // En entornos cloud de solo lectura o sin persistencia de disco, esto puede fallar de forma segura
+      console.warn('Aviso: no se pudo escribir en disco local (normal en contenedores cloud):', fsError?.message)
+    }
+
+    // URL accesible a través de la API persistente
+    const fileUrl = `/api/uploads/${uniqueFileName}`
 
     return NextResponse.json({
       success: true,
@@ -57,4 +87,3 @@ export async function POST(request: Request) {
     )
   }
 }
-

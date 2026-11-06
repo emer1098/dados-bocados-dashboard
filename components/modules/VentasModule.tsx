@@ -290,11 +290,10 @@ export function VentasModule({
               <button
                 key={m}
                 onClick={() => setFilterMethod(m)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  filterMethod === m
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${filterMethod === m
                     ? 'bg-[#1a1b21] text-white'
                     : 'bg-black/5 text-[#555869] hover:bg-black/10'
-                }`}
+                  }`}
               >
                 {m}
               </button>
@@ -346,36 +345,36 @@ export function VentasModule({
                         {sale.items || 'Consumo general'}
                       </td>
                       <td>{renderPaymentBadge(sale.paymentMethod || 'Efectivo')}</td>
-                       <td className="text-right font-bold text-[#1a1b21] text-base tabular-nums">
-                         S/ {(Number(sale.total) || 0).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                       </td>
-                       <td className="text-right">
-                         <div className="inline-flex items-center gap-1">
-                           {onUpdateSale && (
-                             <button
-                               type="button"
-                               onClick={() => openEditSale(sale)}
-                               className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/5 text-[#555869]"
-                               aria-label="Editar venta"
-                               title="Editar venta"
-                             >
-                               <Pencil className="w-3.5 h-3.5" />
-                             </button>
-                           )}
-                           {onDeleteSale && (
-                             <button
-                               type="button"
-                               onClick={() => setDeletingSale(sale)}
-                               className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#fee2e2] text-[#b91c1c]"
-                               aria-label="Eliminar venta"
-                               title="Eliminar venta"
-                             >
-                               <Trash2 className="w-3.5 h-3.5" />
-                             </button>
-                           )}
-                         </div>
-                       </td>
-                     </tr>
+                      <td className="text-right font-bold text-[#1a1b21] text-base tabular-nums">
+                        S/ {(Number(sale.total) || 0).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </td>
+                      <td className="text-right">
+                        <div className="inline-flex items-center gap-1">
+                          {onUpdateSale && (
+                            <button
+                              type="button"
+                              onClick={() => openEditSale(sale)}
+                              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/5 text-[#555869]"
+                              aria-label="Editar venta"
+                              title="Editar venta"
+                            >
+                              <Pencil className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                          {onDeleteSale && (
+                            <button
+                              type="button"
+                              onClick={() => setDeletingSale(sale)}
+                              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#fee2e2] text-[#b91c1c]"
+                              aria-label="Eliminar venta"
+                              title="Eliminar venta"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
@@ -415,11 +414,10 @@ export function VentasModule({
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
-                      categoryFilter === cat
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${categoryFilter === cat
                         ? 'bg-[#1a1b21] text-white shadow-xs'
                         : 'text-[#555869] hover:text-[#1a1b21]'
-                    }`}
+                      }`}
                   >
                     {cat}
                   </button>
@@ -504,11 +502,10 @@ export function VentasModule({
                       )
                     }
                     return (
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                        selObj.status === 'Ocupada'
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${selObj.status === 'Ocupada'
                           ? 'bg-[#fee2e2] text-[#b91c1c] border border-[#fca5a5]'
                           : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                      }`}>
+                        }`}>
                         {selObj.status === 'Ocupada' ? '● Ocupada' : '✓ Libre'}
                       </span>
                     )
@@ -535,11 +532,10 @@ export function VentasModule({
                   )
                   if (!selObj) return null
                   return (
-                    <div className={`p-2 rounded-xl text-xs flex items-center justify-between ${
-                      selObj.status === 'Ocupada'
+                    <div className={`p-2 rounded-xl text-xs flex items-center justify-between ${selObj.status === 'Ocupada'
                         ? 'bg-amber-50 border border-amber-200 text-amber-900'
                         : 'bg-emerald-50 border border-emerald-200 text-emerald-900'
-                    }`}>
+                      }`}>
                       <div className="flex items-center gap-1.5">
                         <span className={`w-2 h-2 rounded-full ${selObj.status === 'Ocupada' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
                         <span className="font-semibold">
@@ -608,16 +604,15 @@ export function VentasModule({
                       { id: 'Yape', icon: Smartphone },
                     ].map((m) => {
                       const IconComp = m.icon
-  return (
+                      return (
                         <button
                           key={m.id}
                           type="button"
                           onClick={() => setPaymentMethod(m.id as any)}
-                          className={`flex flex-col items-center justify-center p-2 rounded-xl border text-xs font-semibold gap-1 transition-all ${
-                            paymentMethod === m.id
+                          className={`flex flex-col items-center justify-center p-2 rounded-xl border text-xs font-semibold gap-1 transition-all ${paymentMethod === m.id
                               ? 'bg-[#1a1b21] text-white border-[#1a1b21]'
                               : 'bg-white text-[#555869] border-black/10 hover:bg-black/5'
-                          }`}
+                            }`}
                         >
                           <IconComp className="w-4 h-4" />
                           <span>{m.id}</span>
@@ -664,56 +659,56 @@ export function VentasModule({
         <OverlayPortal>
           <div ref={editModalRef} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 ">
             <div className="glass-card !bg-white max-w-md w-full !p-6 flex flex-col gap-5 living-zoom-in">
-            <div className="flex items-start justify-between">
-              <div>
-                <h2 className="text-2xl font-bold font-cormorant text-[#1a1b21] m-0">Editar venta</h2>
-                <p className="text-xs text-[#555869] mt-0.5">Ticket #{editingSale.id?.slice(-6).toUpperCase()}</p>
+              <div className="flex items-start justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold font-cormorant text-[#1a1b21] m-0">Editar venta</h2>
+                  <p className="text-xs text-[#555869] mt-0.5">Ticket #{editingSale.id?.slice(-6).toUpperCase()}</p>
+                </div>
+                <button onClick={() => setEditingSale(null)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/8 text-[#555869]">
+                  <X className="w-4 h-4" />
+                </button>
               </div>
-              <button onClick={() => setEditingSale(null)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/8 text-[#555869]">
-                <X className="w-4 h-4" />
-              </button>
-            </div>
 
-            <InputField
-              label="Total (S/)"
-              prefixText="S/"
-              type="number"
-              min="0"
-              step="0.01"
-              value={editTotal}
-              onChange={(e) => setEditTotal(e.target.value)}
-              className="font-bold numeral-clean"
-            />
+              <InputField
+                label="Total (S/)"
+                prefixText="S/"
+                type="number"
+                min="0"
+                step="0.01"
+                value={editTotal}
+                onChange={(e) => setEditTotal(e.target.value)}
+                className="font-bold numeral-clean"
+              />
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-[#1a1b21]">Método de pago:</label>
-              <select value={editPayment} onChange={(e) => setEditPayment(e.target.value as any)} className="living-select">
-                <option value="Efectivo">Efectivo</option>
-                <option value="Tarjeta">Tarjeta</option>
-                <option value="Yape">Yape</option>
-              </select>
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold text-[#1a1b21]">Método de pago:</label>
+                <select value={editPayment} onChange={(e) => setEditPayment(e.target.value as any)} className="living-select">
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Tarjeta">Tarjeta</option>
+                  <option value="Yape">Yape</option>
+                </select>
+              </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-[#1a1b21]">Mesa / Ubicación:</label>
-              <input type="text" value={editTable} onChange={(e) => setEditTable(e.target.value)} className="living-input text-base" />
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold text-[#1a1b21]">Mesa / Ubicación:</label>
+                <input type="text" value={editTable} onChange={(e) => setEditTable(e.target.value)} className="living-input text-base" />
+              </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-[#1a1b21]">Detalle de productos:</label>
-              <textarea value={editItems} onChange={(e) => setEditItems(e.target.value)} className="living-input text-sm" rows={2} />
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold text-[#1a1b21]">Detalle de productos:</label>
+                <textarea value={editItems} onChange={(e) => setEditItems(e.target.value)} className="living-input text-sm" rows={2} />
+              </div>
 
-            <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-black/6">
-              <button type="button" onClick={() => setEditingSale(null)} className="px-4 py-2 rounded-full text-xs font-bold bg-black/5 text-[#1a1b21] hover:bg-black/10 transition-colors">
-                Cancelar
-              </button>
-              <button type="button" onClick={handleSaveEdit} disabled={savingEdit} className="px-5 py-2 rounded-full text-xs font-bold bg-[#1a1b21] text-white hover:opacity-90 transition-opacity disabled:opacity-50">
-                {savingEdit ? 'Guardando...' : 'Guardar'}
-              </button>
+              <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-black/6">
+                <button type="button" onClick={() => setEditingSale(null)} className="px-4 py-2 rounded-full text-xs font-bold bg-black/5 text-[#1a1b21] hover:bg-black/10 transition-colors">
+                  Cancelar
+                </button>
+                <button type="button" onClick={handleSaveEdit} disabled={savingEdit} className="px-5 py-2 rounded-full text-xs font-bold bg-[#1a1b21] text-white hover:opacity-90 transition-opacity disabled:opacity-50">
+                  {savingEdit ? 'Guardando...' : 'Guardar'}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
         </OverlayPortal>
       )}
 
@@ -722,25 +717,25 @@ export function VentasModule({
         <OverlayPortal>
           <div ref={deleteModalRef} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 ">
             <div className="glass-card !bg-white max-w-sm w-full !p-6 flex flex-col gap-4 text-center living-zoom-in">
-            <div className="w-12 h-12 rounded-2xl bg-[#fee2e2] text-[#b91c1c] flex items-center justify-center mx-auto">
-              <Trash2 className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold font-cormorant text-[#1a1b21] m-0">Eliminar venta</h3>
-              <p className="text-xs text-[#555869] mt-1">
-                ¿Eliminar el ticket #{deletingSale.id?.slice(-6).toUpperCase()} por S/ {(Number(deletingSale.total) || 0).toFixed(2)}? Esta acción no se puede deshacer.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 pt-2">
-              <button type="button" onClick={() => setDeletingSale(null)} className="flex-1 px-4 py-2 rounded-full text-xs font-bold bg-black/5 text-[#1a1b21] hover:bg-black/10 transition-colors">
-                Cancelar
-              </button>
-              <button type="button" onClick={handleConfirmDelete} disabled={deleting} className="flex-1 px-4 py-2 rounded-full text-xs font-bold bg-[#b91c1c] text-white hover:opacity-90 transition-opacity disabled:opacity-50">
-                {deleting ? 'Eliminando...' : 'Eliminar'}
-              </button>
+              <div className="w-12 h-12 rounded-2xl bg-[#fee2e2] text-[#b91c1c] flex items-center justify-center mx-auto">
+                <Trash2 className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold font-cormorant text-[#1a1b21] m-0">Eliminar venta</h3>
+                <p className="text-xs text-[#555869] mt-1">
+                  ¿Eliminar el ticket #{deletingSale.id?.slice(-6).toUpperCase()} por S/ {(Number(deletingSale.total) || 0).toFixed(2)}? Esta acción no se puede deshacer.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 pt-2">
+                <button type="button" onClick={() => setDeletingSale(null)} className="flex-1 px-4 py-2 rounded-full text-xs font-bold bg-black/5 text-[#1a1b21] hover:bg-black/10 transition-colors">
+                  Cancelar
+                </button>
+                <button type="button" onClick={handleConfirmDelete} disabled={deleting} className="flex-1 px-4 py-2 rounded-full text-xs font-bold bg-[#b91c1c] text-white hover:opacity-90 transition-opacity disabled:opacity-50">
+                  {deleting ? 'Eliminando...' : 'Eliminar'}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
         </OverlayPortal>
       )}
     </div>

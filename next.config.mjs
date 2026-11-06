@@ -8,6 +8,7 @@ const nextConfig = {
   },
   async rewrites() {
     return [
+      { source: '/uploads/:filename*', destination: '/api/uploads/:filename*' },
       { source: '/login', destination: '/' },
       { source: '/menu', destination: '/' },
       { source: '/ventas', destination: '/' },
