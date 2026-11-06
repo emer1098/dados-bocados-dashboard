@@ -66,3 +66,4 @@ export async function GET(
     return new NextResponse('Error loading image', { status: 500 })
   }
 }
+
