@@ -361,7 +361,7 @@ export function CatalogoModule({
             className="flex items-center gap-1.5 px-4 h-10 rounded-full text-xs font-bold bg-white text-[#1a1b21] border border-black/10 hover:bg-black/5 transition-colors shadow-2xs"
           >
             <Download className="w-3.5 h-3.5 text-[#555869]" />
-            <span>Exportar CSV</span>
+            <span>Exportar Excel</span>
           </button>
 
           {/* Botón Principal Agregar Producto */}

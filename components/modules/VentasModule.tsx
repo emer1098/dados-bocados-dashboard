@@ -267,7 +267,7 @@ export function VentasModule({
                 className="bg-black/5 text-[#1a1b21] rounded-full px-4 py-2 text-xs font-bold hover:bg-black/10 inline-flex items-center gap-1.5 transition-colors"
               >
                 <Download className="w-3.5 h-3.5" />
-                Exportar CSV
+                Exportar Excel
               </button>
             </div>
           </div>

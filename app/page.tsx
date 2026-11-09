@@ -616,19 +616,203 @@ export default function Page() {
       return false
     }
   }
-  const handleExportCSV = () => {
-    const csvContent =
-      'data:text/csv;charset=utf-8,ID,Producto,Categoria,Precio_Soles,Stock\n' +
-      products.map((p) => `"${p.id}","${p.name}","${p.category}","${p.price}","${p.stock}"`).join('\n')
-    const encodedUri = encodeURI(csvContent)
+  const THIN_BORDER = {
+    top: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+    left: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+    bottom: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+    right: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+  } as any
+
+  const styleHeaderRow = (row: any, fill: string = 'FF1A1B21') => {
+    row.eachCell((cell: any) => {
+      cell.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 11 }
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: fill } }
+      cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true }
+      cell.border = THIN_BORDER
+    })
+    row.height = 22
+  }
+
+  const styleTitleRow = (ws: any, title: string, lastCol: number) => {
+    ws.mergeCells(1, 1, 1, lastCol)
+    const cell = ws.getCell(1, 1)
+    cell.value = title
+    cell.font = { bold: true, size: 14, color: { argb: 'FFFFFFFF' } }
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1A1B21' } }
+    cell.alignment = { vertical: 'middle', horizontal: 'left', indent: 1 }
+    ws.getRow(1).height = 26
+  }
+
+  const styleSubtitleRow = (ws: any, text: string, lastCol: number) => {
+    ws.mergeCells(2, 1, 2, lastCol)
+    const cell = ws.getCell(2, 1)
+    cell.value = text
+    cell.font = { italic: true, size: 10, color: { argb: 'FF555869' } }
+    cell.alignment = { vertical: 'middle', horizontal: 'left', indent: 1 }
+    ws.getRow(2).height = 16
+  }
+
+  const styleSectionRow = (ws: any, row: number, title: string, lastCol: number) => {
+    ws.mergeCells(row, 1, row, lastCol)
+    const cell = ws.getCell(row, 1)
+    cell.value = title
+    cell.font = { bold: true, size: 12, color: { argb: 'FF1A1B21' } }
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFE8E4DD' } }
+    cell.alignment = { vertical: 'middle', horizontal: 'left', indent: 1 }
+    ws.getRow(row).height = 20
+  }
+
+  const addTable = (ws: any, startRow: number, headers: string[], rows: any[][], widths?: number[]) => {
+    let r = startRow
+    const headerRow = ws.getRow(r)
+    headers.forEach((h, i) => { headerRow.getCell(i + 1).value = h })
+    styleHeaderRow(headerRow)
+    r++
+    rows.forEach((row) => {
+      const dataRow = ws.getRow(r)
+      row.forEach((v, i) => { dataRow.getCell(i + 1).value = v })
+      dataRow.eachCell((cell: any) => {
+        cell.border = THIN_BORDER
+        cell.alignment = { vertical: 'middle', wrapText: true }
+        cell.font = { size: 11 }
+      })
+      r++
+    })
+    if (widths) {
+      widths.forEach((w, i) => { ws.getColumn(i + 1).width = w })
+    }
+    return r
+  }
+
+  const downloadXlsx = async (filename: string, build: (wb: any) => void) => {
+    const ExcelJS = await import('exceljs')
+    const wb = new ExcelJS.Workbook()
+    wb.creator = 'Dados & Bocados'
+    wb.created = new Date()
+    build(wb)
+    const buffer = await wb.xlsx.writeBuffer()
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
+    const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
-    link.setAttribute('href', encodedUri)
-    link.setAttribute('download', `catalogo_dados_bocados_${Date.now()}.csv`)
+    link.href = url
+    link.download = filename
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
-    showToast('Catálogo descargado en formato CSV.')
+    URL.revokeObjectURL(url)
   }
+
+  const handleExportCatalogXlsx = async () => {
+    await downloadXlsx(`catalogo_dados_bocados_${Date.now()}.xlsx`, (wb) => {
+      const ws = wb.addWorksheet('Catalogo')
+      const lastCol = 9
+      styleTitleRow(ws, 'Catalogo de Productos - Dados & Bocados', lastCol)
+      styleSubtitleRow(ws, `Exportado el ${new Date().toLocaleString('es-PE')}`, lastCol)
+      const rows = products.map((p: any) => [
+        p.id,
+        p.name,
+        p.category,
+        p.subCategory || '',
+        p.sku || '',
+        Number(p.price || 0),
+        Number(p.cost || 0),
+        p.stock ?? 0,
+        (p.image || p.imageUrl) ? 'Si' : 'No',
+      ])
+      addTable(ws, 4, ['ID', 'Producto', 'Categoria', 'Seccion', 'Codigo (SKU)', 'Precio (S/)', 'Costo (S/)', 'Stock (uds.)', 'Foto'], rows, [8, 34, 22, 26, 14, 12, 12, 12, 8])
+      const priceCol = ws.getColumn(6)
+      const costCol = ws.getColumn(7)
+      priceCol.numFmt = '#,##0.00'
+      costCol.numFmt = '#,##0.00'
+    })
+    showToast('Catalogo descargado en formato Excel.')
+  }
+
+  const handleExportSalesXlsx = async () => {
+    await downloadXlsx(`ventas_dados_bocados_${Date.now()}.xlsx`, (wb) => {
+      const ws = wb.addWorksheet('Ventas')
+      const lastCol = 6
+      styleTitleRow(ws, 'Tickets de Venta - Dados & Bocados', lastCol)
+      styleSubtitleRow(ws, `Exportado el ${new Date().toLocaleString('es-PE')}`, lastCol)
+      const rows = sales.map((s: any, idx: number) => [
+        s.id ? `#${s.id.slice(-6).toUpperCase()}` : `TK-${idx + 1}`,
+        s.table || 'Mostrador',
+        s.items || 'Consumo general',
+        s.paymentMethod || 'Efectivo',
+        Number(s.total || 0),
+        s.createdAt ? new Date(s.createdAt).toLocaleString('es-PE') : (s.time || ''),
+      ])
+      let r = addTable(ws, 4, ['ID Ticket', 'Mesa / Ubicacion', 'Detalle de Productos', 'Metodo de Pago', 'Total Cobrado (S/)', 'Fecha'], rows, [14, 22, 46, 16, 16, 22])
+      ws.getColumn(5).numFmt = '#,##0.00'
+      r += 1
+      styleSectionRow(ws, r, 'Resumen', lastCol)
+      r += 1
+      const summaryRows = [
+        ['Total vendido (S/)', totalSalesAmount],
+        ['Tickets emitidos', sales.length],
+        ['Ticket promedio (S/)', sales.length > 0 ? totalSalesAmount / sales.length : 0],
+      ]
+      const sHeader = ws.getRow(r)
+      sHeader.getCell(1).value = 'Concepto'
+      sHeader.getCell(2).value = 'Valor'
+      styleHeaderRow(sHeader)
+      r++
+      summaryRows.forEach((row) => {
+        const dataRow = ws.getRow(r)
+        dataRow.getCell(1).value = row[0]
+        dataRow.getCell(2).value = row[1]
+        dataRow.eachCell((cell: any) => { cell.border = THIN_BORDER; cell.font = { size: 11 } })
+        if (typeof row[1] === 'number') ws.getCell(r, 2).numFmt = '#,##0.00'
+        r++
+      })
+    })
+    showToast('Ventas descargadas en formato Excel.')
+  }
+
+  const handleExportReportsXlsx = async () => {
+    await downloadXlsx(`reportes_dados_bocados_${Date.now()}.xlsx`, (wb) => {
+      const ws = wb.addWorksheet('Reportes')
+      const lastCol = 6
+      styleTitleRow(ws, 'Reportes y Analitica - Dados & Bocados', lastCol)
+      styleSubtitleRow(ws, `Exportado el ${new Date().toLocaleString('es-PE')}`, lastCol)
+      let r = 4
+      styleSectionRow(ws, r, 'Resumen de Rendimiento', lastCol)
+      r++
+      const kHeader = ws.getRow(r)
+      kHeader.getCell(1).value = 'Concepto'
+      kHeader.getCell(2).value = 'Valor'
+      styleHeaderRow(kHeader)
+      r++
+      const kpiRows = [
+        ['Recaudacion historica (S/)', totalSalesAmount],
+        ['Comprobantes emitidos', sales.length],
+        ['Ticket promedio (S/)', sales.length > 0 ? totalSalesAmount / sales.length : 0],
+      ]
+      kpiRows.forEach((row) => {
+        const dataRow = ws.getRow(r)
+        dataRow.getCell(1).value = row[0]
+        dataRow.getCell(2).value = row[1]
+        dataRow.eachCell((cell: any) => { cell.border = THIN_BORDER; cell.font = { size: 11 } })
+        if (typeof row[1] === 'number') ws.getCell(r, 2).numFmt = '#,##0.00'
+        r++
+      })
+      r += 1
+      styleSectionRow(ws, r, 'Top Productos por Rotacion', lastCol)
+      r++
+      const topRows = products.slice(0, 8).map((p: any, idx: number) => [
+        idx + 1,
+        p.name,
+        p.category,
+        Number(p.price || 0),
+        p.stock ?? 0,
+        idx < 3 ? 'Alta Rotacion' : 'Demanda Regular',
+      ])
+      addTable(ws, r, ['#', 'Producto', 'Categoria', 'Precio (S/)', 'Stock (uds.)', 'Rendimiento'], topRows, [6, 34, 22, 14, 14, 18])
+      ws.getColumn(4).numFmt = '#,##0.00'
+    })
+    showToast('Reporte descargado en formato Excel.')
+  }
+
 
   // ─── Métricas derivadas ───────────────────────────────────────────────────
   const totalSalesAmount = useMemo(() => sales.reduce((acc, s) => acc + (Number(s.total) || 0), 0), [sales])
@@ -768,7 +952,7 @@ export default function Page() {
             onRegisterSale={handleCreateSale}
             onUpdateSale={handleUpdateSale}
             onDeleteSale={handleDeleteSale}
-            onExportCSV={handleExportCSV}
+onExportCSV={handleExportSalesXlsx}
           />
         )}
 
@@ -792,7 +976,7 @@ export default function Page() {
             onDeleteProduct={handleDeleteProduct}
             onRenameCategory={handleRenameCategory}
             onDeleteCategory={handleDeleteCategory}
-            onExportCSV={handleExportCSV}
+onExportCSV={handleExportCatalogXlsx}
           />
         )}
 
@@ -836,7 +1020,7 @@ export default function Page() {
             sales={sales}
             products={products}
             totalSalesAmount={totalSalesAmount}
-            onExportCSV={handleExportCSV}
+onExportCSV={handleExportReportsXlsx}
           />
         )}
 

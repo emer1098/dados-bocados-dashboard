@@ -29,7 +29,7 @@ export function ReportesModule({
           onClick={onExportCSV}
           className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-[#1a1b21] text-white hover:opacity-90 transition-opacity"
         >
-          <Download className="w-3.5 h-3.5" /> Exportar balance CSV
+          <Download className="w-3.5 h-3.5" /> Exportar balance Excel
         </button>
       </div>
 
