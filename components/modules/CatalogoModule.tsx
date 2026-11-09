@@ -112,6 +112,21 @@ export function CatalogoModule({
     new Set(products.map((p) => p.category).filter(Boolean))
   ) as string[]
 
+  // Secciones disponibles para escoger al registrar un producto (derivadas del catalogo)
+  const availableSections = Array.from(
+    new Set(
+      products
+        .map((p) => (p.subCategory || p.category || '').toString().trim())
+        .filter(Boolean)
+    )
+  ) as string[]
+
+  const categoryOptions = availableCategories.length > 0 ? availableCategories : ['Alimentos y bebidas', 'Juegos de mesa']
+
+  const sectionOptions = Array.from(
+    new Set([...availableSections, ...(form.subCategory ? [form.subCategory] : [])])
+  ) as string[]
+
   // Filtrado y ordenamiento de productos
   const filtered = products
     .filter((p) => {
@@ -705,19 +720,23 @@ export function CatalogoModule({
                       value={form.category}
                       onChange={(e) => setForm({ ...form, category: e.target.value })}
                     >
-                      <option value="Alimentos y bebidas">Alimentos y bebidas</option>
-                      <option value="Juegos de mesa">Juegos de mesa</option>
+                      {categoryOptions.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
                     </select>
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <InputField
-                      label={copy.labels.section}
-                      type="text"
+                    <label className="text-xs font-semibold text-[#1a1b21] select-none">{copy.labels.section}</label>
+                    <select
+                      className="living-select text-xs h-12"
                       value={form.subCategory}
                       onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
-                      placeholder="WAFFLES, POSTRES..."
-                    />
+                    >
+                      {sectionOptions.map((sec) => (
+                        <option key={sec} value={sec}>{sec}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
