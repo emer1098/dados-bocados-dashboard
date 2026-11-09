@@ -57,10 +57,45 @@ export function CatalogoModule({
   const [sortBy, setSortBy] = useState<'nombre' | 'precio_asc' | 'precio_desc' | 'stock'>('nombre')
 
   // Vista (Productos vs Categorías)
-  const [view, setView] = useState<'productos' | 'categorias'>('productos')
+  const [view, setView] = useState<'productos' | 'categorias' | 'secciones'>('productos')
   const [editingCategory, setEditingCategory] = useState<string | null>(null)
   const [categoryDraft, setCategoryDraft] = useState('')
   const [savingCategory, setSavingCategory] = useState(false)
+
+  // Secciones: edicion y eliminacion sin romper los vinculos con los productos
+  const [editingSection, setEditingSection] = useState<string | null>(null)
+  const [sectionDraft, setSectionDraft] = useState('')
+  const [savingSection, setSavingSection] = useState(false)
+
+  const getSectionProductCount = (sec: string) =>
+    products.filter((p) => (p.subCategory || p.category || '').toString().trim() === sec).length
+
+  const handleStartRenameSection = (sec: string) => {
+    setEditingSection(sec)
+    setSectionDraft(sec)
+  }
+
+  const handleSaveRenameSection = async (oldName: string) => {
+    const trimmed = sectionDraft.trim()
+    if (!trimmed || trimmed === oldName) {
+      setEditingSection(null)
+      return
+    }
+    setSavingSection(true)
+    const targets = products.filter((p) => (p.subCategory || p.category || '').toString().trim() === oldName)
+    for (const p of targets) {
+      await onUpdateProduct(p.id, { subCategory: trimmed })
+    }
+    setSavingSection(false)
+    setEditingSection(null)
+  }
+
+  const handleDeleteSection = async (sec: string) => {
+    const targets = products.filter((p) => (p.subCategory || p.category || '').toString().trim() === sec)
+    for (const p of targets) {
+      await onUpdateProduct(p.id, { subCategory: p.category || 'Otros' })
+    }
+  }
 
   // Modales
   const [modalOpen, setModalOpen] = useState(false)
@@ -298,6 +333,15 @@ export function CatalogoModule({
               }`}
             >
               Productos
+            </button>
+            <button
+              type="button"
+              onClick={() => setView('secciones')}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                view === 'secciones' ? 'bg-[#1a1b21] text-white shadow-xs' : 'text-[#555869] hover:text-[#1a1b21]'
+              }`}
+            >
+              Secciones
             </button>
             <button
               type="button"
@@ -552,6 +596,48 @@ export function CatalogoModule({
         </div>
       )}
 
+      {/* VISTA DE SECCIONES */}
+
+      {view === 'secciones' && (
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold font-cormorant text-[#1a1b21] m-0">Secciones de Carta</h2>
+            <span className="text-xs text-[#555869]">{availableSections.length} secciones registradas</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {availableSections.map((sec) => {
+              const count = getSectionProductCount(sec)
+              const isEditing = editingSection === sec
+              return (
+                <div key={sec} className="living-card p-5 flex flex-col gap-3">
+                  <div className="flex items-center justify-between gap-2">
+                    {isEditing ? (
+                      <input value={sectionDraft} onChange={(e) => setSectionDraft(e.target.value)} className="living-input text-sm font-bold flex-1 h-10" autoFocus />
+                    ) : (
+                      <h3 className="text-base font-bold text-[#1a1b21] m-0 truncate">{sec}</h3>
+                    )}
+                    <span className="text-xs font-semibold text-[#555869] bg-black/5 px-2.5 py-1 rounded-full shrink-0">{count} items</span>
+                  </div>
+                  <div className="flex items-center justify-end gap-2 pt-2 border-t border-black/6">
+                    {isEditing ? (
+                      <>
+                        <button type="button" onClick={() => setEditingSection(null)} className="px-3 py-1.5 rounded-full text-xs font-semibold text-[#555869] hover:bg-black/5">Cancelar</button>
+                        <button type="button" disabled={savingSection} onClick={() => handleSaveRenameSection(sec)} className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1a1b21] text-white hover:opacity-90">Guardar</button>
+                      </>
+                    ) : (
+                      <>
+                        <button type="button" onClick={() => handleStartRenameSection(sec)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-black/5 hover:bg-black/10 text-[#1a1b21]">Renombrar</button>
+                        <button type="button" onClick={() => { if (confirm(`Eliminar la seccion "${sec}"?`)) { handleDeleteSection(sec) } }} className="px-3 py-1.5 rounded-full text-xs font-semibold text-[#b91c1c] hover:bg-[#fee2e2]">Eliminar</button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
       {/* ── 4. VISTA DE CATEGORÍAS ── */}
       {view === 'categorias' && (
         <div className="flex flex-col gap-4">
@@ -728,15 +814,36 @@ export function CatalogoModule({
 
                   <div className="flex flex-col gap-1">
                     <label className="text-xs font-semibold text-[#1a1b21] select-none">{copy.labels.section}</label>
-                    <select
-                      className="living-select text-xs h-12"
-                      value={form.subCategory}
-                      onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
-                    >
-                      {sectionOptions.map((sec) => (
-                        <option key={sec} value={sec}>{sec}</option>
-                      ))}
-                    </select>
+                    {form.subCategory ? (
+                      sectionOptions.includes(form.subCategory) ? (
+                        <select
+                          className="living-select text-xs h-12"
+                          value={form.subCategory}
+                          onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
+                        >
+                          {sectionOptions.map((sec) => (
+                            <option key={sec} value={sec}>{sec}</option>
+                          ))}
+                          <option value="">Nueva seccion...</option>
+                        </select>
+                      ) : (
+                        <InputField
+                          label={copy.labels.section}
+                          type="text"
+                          value={form.subCategory}
+                          onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
+                          placeholder="WAFFLES, POSTRES..."
+                        />
+                      )
+                    ) : (
+                      <InputField
+                        label={copy.labels.section}
+                        type="text"
+                        value={form.subCategory}
+                        onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
+                        placeholder="WAFFLES, POSTRES..."
+                      />
+                    )}
                   </div>
                 </div>
 
