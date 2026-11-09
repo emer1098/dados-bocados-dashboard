@@ -52,6 +52,8 @@ export function VentasModule({
 }: VentasModuleProps) {
   const [viewMode, setViewMode] = useState<'history' | 'pos'>('history')
   const [cart, setCart] = useState<SaleItem[]>([])
+  const [editingPriceId, setEditingPriceId] = useState<string | null>(null)
+  const [priceDraft, setPriceDraft] = useState('')
   const [selectedTable, setSelectedTable] = useState('Mesa 01')
 
   // Sincronizar mesa seleccionada con las mesas reales
@@ -120,6 +122,20 @@ export function VentasModule({
     } else {
       setCart(cart.filter((i) => i.id !== id))
     }
+  }
+
+  // Editar precio de un item del ticket sin afectar el catalogo
+  const startEditPrice = (item: SaleItem) => {
+    setEditingPriceId(item.id)
+    setPriceDraft(String(item.price))
+  }
+
+  const commitPrice = (id: string) => {
+    const n = Number(priceDraft)
+    if (!Number.isNaN(n) && n >= 0) {
+      setCart((prev) => prev.map((i) => (i.id === id ? { ...i, price: n } : i)))
+    }
+    setEditingPriceId(null)
   }
 
   // Finalizar cobro
@@ -562,9 +578,38 @@ export function VentasModule({
                         <span className="text-xs font-bold text-[#1a1b21] truncate">
                           {item.name}
                         </span>
-                        <span className="text-[11px] text-[#555869] tabular-nums">
-                          S/ {item.price.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} c/u
-                        </span>
+                        {editingPriceId === item.id ? (
+                          <input
+                            autoFocus
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={priceDraft}
+                            onChange={(e) => setPriceDraft(e.target.value)}
+                            onBlur={() => commitPrice(item.id)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                e.preventDefault()
+                                commitPrice(item.id)
+                              }
+                              if (e.key === 'Escape') {
+                                setEditingPriceId(null)
+                              }
+                            }}
+                            className="living-input text-[11px] h-8 min-h-0 w-24 numeral-clean font-bold text-[#1a1b21] px-2 py-1"
+                            aria-label="Editar precio"
+                          />
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => startEditPrice(item)}
+                            className="inline-flex items-center gap-1 text-[11px] text-[#555869] tabular-nums hover:text-[#1a1b21] hover:underline cursor-pointer"
+                            title="Editar precio"
+                          >
+                            <Pencil className="w-3 h-3" />
+                            S/ {item.price.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} c/u
+                          </button>
+                        )}
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
