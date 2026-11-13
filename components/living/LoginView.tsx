@@ -56,11 +56,11 @@ export function LoginView({
         </div>
       )}
 
-      {/* Tarjeta de Vidrio CENTRADA Limpia - Mayor opacidad blanca para legibilidad premium */}
-      <div className="relative z-10 w-full max-w-sm bg-white/95 backdrop-blur-xl rounded-3xl p-7 flex flex-col gap-5 shadow-2xl animate-fade-in border border-white/60">
+      {/* Tarjeta de Vidrio CENTRADA Limpia - Negro y Dorado elegante estilo logo */}
+      <div className="relative z-10 w-full max-w-sm bg-[#121319]/95 backdrop-blur-2xl rounded-3xl p-7 flex flex-col gap-5 shadow-[0_25px_60px_rgba(0,0,0,0.85)] animate-fade-in border border-amber-500/35">
         {/* Encabezado con Logo */}
         <div className="flex flex-col items-center text-center gap-2.5">
-          <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white shadow-lg bg-black/40 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-amber-400/40 shadow-lg bg-black/60 flex items-center justify-center">
             {!logoError ? (
               <img
                 src="/logo.jpg"
@@ -69,16 +69,16 @@ export function LoginView({
                 onError={() => setLogoError(true)}
               />
             ) : (
-              <div className="w-full h-full bg-[#1a1b21] flex flex-col items-center justify-center text-amber-400 font-bold text-xs p-1">
+              <div className="w-full h-full bg-[#121319] flex flex-col items-center justify-center text-amber-400 font-bold text-xs p-1">
                 <span>🎲 D&B</span>
               </div>
             )}
           </div>
           <div>
-            <h1 className="text-3xl font-bold font-cormorant text-[#1a1b21] m-0">
+            <h1 className="text-3xl font-bold font-cormorant text-amber-300 m-0">
               {isRegistering ? copy.login.createAccount : copy.login.title}
             </h1>
-            <p className="text-xs text-[#555869] m-0 mt-0.5">
+            <p className="text-xs text-amber-200/70 m-0 mt-0.5">
               {isRegistering
                 ? 'Registra tu acceso de personal'
                 : copy.login.subtitle}
@@ -141,21 +141,11 @@ export function LoginView({
                 {copy.login.button}
               </Button>
 
-              <div className="flex items-center justify-between text-xs text-[#555869] pt-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setUsername('admin')
-                    setPassword('dados2024')
-                  }}
-                  className="hover:underline font-semibold text-[oklch(48%_0.16_45)]"
-                >
-                  {copy.login.demo}
-                </button>
+              <div className="flex items-center justify-center text-xs text-amber-200/70 pt-1">
                 <button
                   type="button"
                   onClick={() => setIsRegistering(true)}
-                  className="hover:underline font-semibold text-[#1a1b21]"
+                  className="hover:underline font-semibold text-amber-400 hover:text-amber-300 transition-colors"
                 >
                   {copy.login.register}
                 </button>
@@ -191,9 +181,9 @@ export function LoginView({
               />
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#1a1b21]">Rol</label>
+                <label className="text-xs font-semibold text-amber-200/90 select-none">Rol</label>
                 <select
-                  className="living-select h-12 text-xs"
+                  className="living-select h-12 text-xs !bg-[#14151d] !border-amber-500/25 !text-[#f5f5f7]"
                   value={regRole}
                   onChange={(e) => setRegRole(e.target.value)}
                 >
@@ -217,9 +207,9 @@ export function LoginView({
                 <button
                   type="button"
                   onClick={() => setIsRegistering(false)}
-                  className="text-xs text-[#555869] hover:underline hover:text-[#1a1b21]"
+                  className="text-xs text-amber-200/70 hover:underline"
                 >
-                  ¿Ya tienes cuenta? <span className="font-bold text-[#1a1b21]">{copy.login.backToLogin}</span>
+                  ¿Ya tienes cuenta? <span className="font-bold text-amber-300">{copy.login.backToLogin}</span>
                 </button>
               </div>
             </>

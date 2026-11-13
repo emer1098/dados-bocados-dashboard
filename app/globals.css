@@ -1,58 +1,59 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@theme {
-  --color-white: oklch(96% 0.06 55);
-}
-
 /* ===================================================
-   SISTEMA DE DISEÑO «LIVING» — DADOS & BOCADITOS
-   Estética moderna, luminosa, limpia y premium
+   SISTEMA DE DISEÑO «DADOS & BOCADOS»
+   Estética Negro Cálido & Dorado de Marca
    =================================================== */
 
 :root {
   /* Tokens Principales */
-  --bg: oklch(95% 0.05 55);
-  --bg-rgb: 252, 246, 232;
-  --ink: oklch(12% 0.015 40);
-  --ink-rgb: 10, 9, 8;
-  --ink-soft: oklch(40% 0.02 240);
-  --ink-soft-rgb: 85, 88, 105;
-  --moss: oklch(92% 0.06 55);
-  --moss-rgb: 245, 230, 210;
-  --moss-deep: oklch(48% 0.16 45);
-  --moss-deep-rgb: 180, 80, 30;
+  --bg: #0d0e12;
+  --bg-rgb: 13, 14, 18;
+  --ink: #f5f5f7;
+  --ink-rgb: 245, 245, 247;
+  --ink-soft: #a1a1aa;
+  --ink-soft-rgb: 161, 161, 170;
+
+  /* Dorado y Acentos de Marca (Logo Dados & Bocados) */
+  --gold: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  --gold-deep: #b45309;
+  --moss: rgba(212, 175, 55, 0.14);
+  --moss-rgb: 212, 175, 55;
+  --moss-deep: #d4af37;
+  --moss-deep-rgb: 212, 175, 55;
 
   /* Semánticos Armonizados (Siempre Icono + Texto) */
-  --status-ok: var(--moss-deep);
-  --status-ok-bg: rgba(185, 245, 207, 0.28);
-  --status-ok-border: rgba(23, 102, 62, 0.25);
+  --status-ok: #10b981;
+  --status-ok-bg: rgba(16, 185, 129, 0.16);
+  --status-ok-border: rgba(16, 185, 129, 0.35);
 
-  --status-warn: #b45309;
-  --status-warn-bg: #fef3c7;
-  --status-warn-border: #fde68a;
+  --status-warn: #f59e0b;
+  --status-warn-bg: rgba(245, 158, 11, 0.16);
+  --status-warn-border: rgba(245, 158, 11, 0.35);
 
-  --status-error: #b91c1c;
-  --status-error-bg: #fee2e2;
-  --status-error-border: #fca5a5;
+  --status-error: #ef4444;
+  --status-error-bg: rgba(239, 68, 68, 0.16);
+  --status-error-border: rgba(239, 68, 68, 0.35);
 
   /* Tarjetas y Sombras */
-  --card-bg-solid: rgba(255, 250, 235, 0.92);
-  --card-border: rgba(255, 250, 235, 0.7);
-  --card-border-subtle: rgba(0, 0, 0, 0.06);
-  --shadow-soft: 0 24px 64px rgba(0, 0, 0, 0.03), 0 4px 16px rgba(0, 0, 0, 0.02);
-  --shadow-pill: 0 16px 36px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
-  --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.08);
+  --card-bg-solid: #15161e;
+  --card-border: rgba(212, 175, 55, 0.22);
+  --card-border-subtle: rgba(255, 255, 255, 0.08);
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.4);
+  --shadow-pill: 0 16px 36px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 20px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(212, 175, 55, 0.15);
 
   /* Tipografías */
   --font-cormorant-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   --font-dm-family: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Selección de texto: fondo moss con texto ink */
+/* Selección de texto: fondo dorado con texto oscuro */
 ::selection {
-  background-color: var(--moss);
-  color: var(--ink);
+  background-color: var(--gold);
+  color: #0d0e12;
 }
 
 html, body {
@@ -69,16 +70,17 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fondo Living: base + halo radial moss al 15% top-left y halo sutil bottom-right */
+/* Fondo Living: base oscura con halo radial dorado sutil */
 .living-bg {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--bg);
+  background-color: #0d0e12;
   background-image:
-    radial-gradient(circle at 0% 0%, rgba(185, 245, 207, 0.16) 0%, transparent 48%),
-    radial-gradient(circle at 100% 100%, rgba(185, 245, 207, 0.09) 0%, transparent 42%),
-    linear-gradient(180deg, #fbf3e0 0%, #f6ecd2 100%);
+    radial-gradient(circle at 10% 5%, rgba(212, 175, 55, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 90% 95%, rgba(212, 175, 55, 0.07) 0%, transparent 40%),
+    linear-gradient(180deg, #0d0e12 0%, #14151c 100%);
   background-attachment: fixed;
+  color: #f5f5f7;
 }
 
 /* Títulos claros, modernos y sin distorsión tipográfica */
@@ -115,19 +117,20 @@ h1, h2, h3 {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--gold);
 }
 
 /* ===================================================
    TARJETAS Y VIDRIO (GLASS)
    =================================================== */
 
-/* Tarjeta estándar de datos (≈92% sólida, sin blur en listas largas para rendimiento tablet) */
+/* Tarjeta estándar de datos (oscura con borde dorado fino) */
 .living-card {
   background: var(--card-bg-solid);
-  border: 1px solid var(--card-border-subtle);
+  border: 1px solid var(--card-border);
   border-radius: 24px;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 250, 235, 0.6);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  color: var(--ink);
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
@@ -137,45 +140,41 @@ h1, h2, h3 {
 }
 .living-card-interactive:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-elevated), inset 0 1px 0 rgba(255, 250, 235, 0.75);
-  border-color: rgba(23, 102, 62, 0.2);
+  box-shadow: var(--shadow-elevated), inset 0 1px 0 rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.45);
 }
 
-/* Tarjeta Vidrio (Glass Card) con blur fuerte estilo "sheet" moderno */
+/* Tarjeta Vidrio (Glass Card) */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 250, 235, 0.75) 0%, rgba(255, 244, 214, 0.42) 100%);
-  backdrop-filter: blur(38px) saturate(1.18);
-  -webkit-backdrop-filter: blur(38px) saturate(1.18);
-  border: 1px solid rgba(255, 244, 214, 0.55);
-  box-shadow: inset 0 1px 0 rgba(255, 250, 235, 0.6), 0 25px 70px rgba(80, 100, 120, 0.1);
+  background: rgba(21, 22, 30, 0.9);
+  backdrop-filter: blur(38px) saturate(1.2);
+  -webkit-backdrop-filter: blur(38px) saturate(1.2);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: inset 0 1px 0 rgba(212, 175, 55, 0.15), 0 25px 70px rgba(0, 0, 0, 0.6);
   border-radius: 24px;
+  color: var(--ink);
 }
 @supports not (backdrop-filter: blur(38px)) {
   .glass-card {
-    background: #fffaf0;
+    background: #171822;
   }
 }
 
-/* Píldora superior flotante (glass fuerte) */
+/* Píldora superior flotante */
 .floating-top-pill {
-  background: linear-gradient(180deg, rgba(255, 250, 235, 0.76), rgba(255, 240, 205, 0.5));
+  background: rgba(20, 21, 28, 0.88);
   backdrop-filter: blur(40px) saturate(1.2);
   -webkit-backdrop-filter: blur(40px) saturate(1.2);
-  border: 1px solid rgba(255, 244, 214, 0.6);
-  box-shadow: inset 0 1px 0 rgba(255, 250, 235, 0.72), 0 18px 40px rgba(97, 218, 251, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: inset 0 1px 0 rgba(212, 175, 55, 0.15), 0 18px 40px rgba(0, 0, 0, 0.5);
   border-radius: 9999px;
+  color: #f5f5f7;
 }
-@supports not (backdrop-filter: blur(40px)) {
-  .floating-top-pill {
-    background: #fffaf0;
-  }
-}
-
 /* ===================================================
-   BOTONES FIRMA LIVING
+   BOTONES FIRMA LIVING (NEGRO Y DORADO)
    =================================================== */
 
-/* 1. Primario: Píldora sólida ink con texto blanco */
+/* 1. Primario: Oro radiante con texto negro de alta legibilidad */
 .btn-primary-living {
   display: inline-flex;
   align-items: center;
@@ -184,31 +183,31 @@ h1, h2, h3 {
   min-height: 44px;
   padding: 10px 24px;
   border-radius: 9999px;
-  background: var(--ink);
-  color: #ffffff;
+  background: linear-gradient(135deg, #d4af37 0%, #f59e0b 50%, #d4af37 100%);
+  color: #0c0d12 !important;
   font-family: var(--font-dm-family);
   font-size: 14.5px;
-  font-weight: 600;
-  border: none;
-  box-shadow: 0 4px 14px rgba(26, 27, 33, 0.22);
+  font-weight: 700;
+  border: 1px solid rgba(255, 230, 150, 0.4);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
   cursor: pointer;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
 }
 .btn-primary-living:hover:not(:disabled) {
   transform: translateY(-1px);
-  background: #0d0e12;
-  box-shadow: 0 6px 20px rgba(26, 27, 33, 0.32);
+  filter: brightness(1.08);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.48);
 }
 .btn-primary-living:active:not(:disabled) {
   transform: scale(0.98);
 }
 .btn-primary-living:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
-/* 2. Secundario: Botón Gota Clara (vidrio blanco, texto ink, borde fino) */
+/* 2. Secundario: Botón Gota Oscura (borde dorado fino, texto claro) */
 .btn-drop-living {
   display: inline-flex;
   align-items: center;
@@ -217,32 +216,32 @@ h1, h2, h3 {
   min-height: 44px;
   padding: 10px 22px;
   border-radius: 9999px;
-  background: rgba(255, 250, 235, 0.95);
-  color: var(--ink);
+  background: #1b1c25;
+  color: #f5f5f7;
   font-family: var(--font-dm-family);
   font-size: 14.5px;
   font-weight: 600;
-  border: 1px solid rgba(0, 0, 0, 0.09);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 250, 235, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   transition: all 0.18s ease;
   user-select: none;
 }
 .btn-drop-living:hover:not(:disabled) {
-  background: #fffaf0;
-  border-color: rgba(0, 0, 0, 0.16);
+  background: #242532;
+  border-color: #d4af37;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
 }
 .btn-drop-living:active:not(:disabled) {
   transform: scale(0.98);
 }
 .btn-drop-living:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
-/* 3. Gota sobre Video: Vidrio translúcido con texto blanco */
+/* 3. Gota sobre Video: Vidrio translúcido oscuro con borde dorado */
 .btn-drop-video {
   display: inline-flex;
   align-items: center;
@@ -251,21 +250,21 @@ h1, h2, h3 {
   min-height: 44px;
   padding: 10px 24px;
   border-radius: 9999px;
-  background: rgba(255, 248, 232, 0.28);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #fff6e3;
+  background: rgba(18, 19, 26, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f5f5f7;
   font-family: var(--font-dm-family);
   font-size: 14.5px;
   font-weight: 600;
-  border: 1px solid rgba(255, 248, 232, 0.55);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .btn-drop-video:hover:not(:disabled) {
-  background: rgba(255, 248, 232, 0.42);
-  border-color: rgba(255, 248, 232, 0.75);
+  background: rgba(28, 29, 39, 0.85);
+  border-color: #d4af37;
   transform: translateY(-1px);
 }
 .btn-drop-video:active:not(:disabled) {
@@ -291,8 +290,8 @@ h1, h2, h3 {
   transition: all 0.18s ease;
 }
 .btn-ghost-living:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.04);
-  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--gold);
 }
 
 .btn-danger-living {
@@ -325,7 +324,8 @@ h1, h2, h3 {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .hero-video-fade {
@@ -341,7 +341,7 @@ h1, h2, h3 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 30%, rgba(26, 27, 33, 0.45) 0%, rgba(26, 27, 33, 0.75) 100%),
+    radial-gradient(circle at 50% 30%, rgba(13, 14, 18, 0.5) 0%, rgba(13, 14, 18, 0.85) 100%),
     linear-gradient(180deg, transparent 40%, var(--bg) 100%);
   pointer-events: none;
 }
@@ -351,8 +351,9 @@ h1, h2, h3 {
   width: 48px;
   height: 48px;
   border-radius: 9999px;
-  background: var(--moss);
-  color: var(--moss-deep);
+  background: rgba(212, 175, 55, 0.12);
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,6 +362,8 @@ h1, h2, h3 {
 }
 .living-card-interactive:hover .moss-icon-circle {
   transform: scale(1.08);
+  border-color: #d4af37;
+  color: #f59e0b;
 }
 
 /* ===================================================
@@ -371,8 +374,8 @@ h1, h2, h3 {
   min-height: 44px;
   padding: 10px 16px;
   border-radius: 16px;
-  background: #fffaf0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #14151d;
+  border: 1px solid rgba(212, 175, 55, 0.25);
   color: var(--ink);
   font-family: var(--font-dm-family);
   font-size: 14.5px;
@@ -380,8 +383,8 @@ h1, h2, h3 {
   transition: all 0.2s ease;
 }
 .living-input:focus, .living-select:focus {
-  border-color: var(--ink);
-  box-shadow: 0 0 0 3px rgba(26, 27, 33, 0.08);
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 /* ===================================================
@@ -413,9 +416,9 @@ h1, h2, h3 {
   border: 1px solid var(--status-error-border);
 }
 .badge-neutral-living {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--ink-soft);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ===================================================
@@ -424,9 +427,9 @@ h1, h2, h3 {
 .living-table-wrap {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--card-border-subtle);
+  border: 1px solid var(--card-border);
   border-radius: 24px;
-  background: #fffaf0;
+  background: #15161e;
   box-shadow: var(--shadow-soft);
 }
 .living-table {
@@ -437,17 +440,17 @@ h1, h2, h3 {
 }
 .living-table th {
   padding: 16px 20px;
-  background: #fdf6e3;
-  color: var(--ink-soft);
+  background: #111219;
+  color: var(--gold);
   font-size: 12.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
 }
 .living-table td {
   padding: 18px 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--ink);
   vertical-align: middle;
 }
@@ -455,7 +458,7 @@ h1, h2, h3 {
   border-bottom: none;
 }
 .living-table tr:hover td {
-  background: rgba(250, 246, 232, 0.7);
+  background: rgba(212, 175, 55, 0.05);
 }
 
 /* ===================================================
@@ -673,3 +676,36 @@ h1, h2, h3 {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===================================================
+   ADAPTACIÓN GLOBAL NEGRO Y DORADO PARA MÓDULOS
+   =================================================== */
+.living-bg .bg-white {
+  background-color: #161720 !important;
+  color: #f5f5f7 !important;
+  border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+.living-bg [class*="bg-white/"] {
+  background-color: rgba(22, 23, 32, 0.94) !important;
+  color: #f5f5f7 !important;
+}
+
+.living-bg .text-\[\#1a1b21\],
+.living-bg [class*="text-[#1a1b21]"] {
+  color: #f5f5f7 !important;
+}
+
+.living-bg .text-\[\#555869\],
+.living-bg [class*="text-[#555869]"] {
+  color: #a1a1aa !important;
+}
+
+.living-bg [class*="border-black/"] {
+  border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+.living-bg [class*="bg-black/"] {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
