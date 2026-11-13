@@ -66,9 +66,9 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     }
 
     return (
-      <div className="flex flex-col gap-1.5 w-full ${containerClassName}">
+      <div className={`flex flex-col gap-1.5 w-full ${containerClassName}`}>
         {label && (
-          <label htmlFor={inputId} className="text-xs font-semibold text-[var(--ink)] select-none">
+          <label htmlFor={inputId} className="text-xs font-semibold text-[#1a1b21] select-none">
             {label}
           </label>
         )}
@@ -77,7 +77,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           {/* Zona Izquierda: Icono y/o Prefijo de unidad */}
           {activeLeftIcon && (
             <span
-              className="absolute left-0 top-0 w-11 h-12 flex items-center justify-center text-[var(--ink-soft)] pointer-events-none z-10"
+              className="absolute left-0 top-0 w-11 h-12 flex items-center justify-center text-[#636158] pointer-events-none z-10"
               aria-hidden="true"
             >
               {activeLeftIcon}
@@ -86,7 +86,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
           {prefixText && (
             <span
-              className={`absolute ${activeLeftIcon ? 'left-11' : 'left-0'} top-0 ${activeLeftIcon ? 'w-8' : 'w-11'} h-12 flex items-center justify-center text-xs font-bold text-[var(--ink-soft)] pointer-events-none z-10 select-none`}
+              className={`absolute ${activeLeftIcon ? 'left-11' : 'left-0'} top-0 ${activeLeftIcon ? 'w-8' : 'w-11'} h-12 flex items-center justify-center text-xs font-bold text-[#636158] pointer-events-none z-10 select-none`}
               aria-hidden="true"
             >
               {prefixText}
@@ -98,17 +98,17 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             ref={ref}
             id={inputId}
             className={`
-              w-full h-12 min-h-[48px] rounded-2xl bg-[#14151d]
-              border border-[var(--card-border)] text-[var(--ink)] text-sm
+              w-full h-12 min-h-[48px] rounded-2xl bg-[#fffef9]
+              border border-black/12 text-[#1a1b21] text-sm
               transition-all duration-150 outline-none
-              placeholder:text-[var(--ink-soft)]/60
-              focus:border-[var(--gold)] focus:ring-2 focus:ring-[var(--gold-glow)]
+              placeholder:text-[#636158]/60
+              focus:border-[oklch(48%_0.16_45)] focus:ring-2 focus:ring-[oklch(48%_0.16_45)]/15
               ${paddingLeftClass}
               ${paddingRightClass}
               ${error ? '!border-[#b91c1c] !ring-1 !ring-[#b91c1c]' : ''}
-              [&:-webkit-autofill]:shadow-[0_0_0_1000px_#14151d_inset]
-              [&:-webkit-autofill]:[-webkit-text-fill-color:#f5f5f7]
-              [&:-webkit-autofill:focus]:shadow-[0_0_0_1000px_#14151d_inset]
+              [&:-webkit-autofill]:shadow-[0_0_0_1000px_#fffef9_inset]
+              [&:-webkit-autofill]:[-webkit-text-fill-color:#1a1b21]
+              [&:-webkit-autofill:focus]:shadow-[0_0_0_1000px_#fffef9_inset]
               ${className}
             `}
             {...props}
